@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ConnectionService } from 'app/utils/connection.service';
 
 @Component({
   selector: 'app-products',
@@ -9,10 +10,16 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private connection: ConnectionService
   ) { }
 
   ngOnInit(): void {
+    this.connection.getProducts().subscribe({
+      next: (v) => console.log(v),
+      error: (e) => console.error(e.error),
+      complete: () => console.info('complete')
+    });
   }
 
 }

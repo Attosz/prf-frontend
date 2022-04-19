@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { UserService } from 'app/services/user.service';
+import { ConnectionService } from 'app/utils/connection.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
       private router: Router,
-      private userService: UserService
+      private userService: UserService,
+      private connectionService: ConnectionService
     ) {
     this.username = '';
     this.password = '';
@@ -27,14 +29,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.username + " " + this.password)
+
     if (this.username && this.password) {
-      // most még csak statikus, hogy szerver oldalról ne kelljen a cors-al foglalkozni, a végleges logint a következő, teljes stack összeállítást bemutató órán nézzük meg
-      if (this.username === 'user' && this.password === 'valami') {
-        this.userService.loginUser(this.username);
-        this.router.navigate(['/products']);
-      } else {
-        this.msg = 'Username or Password is incorrect';
-      }
+      this.connectionService.postLogin(this.username, this.password).subscribe({
+        next: (v) => {
+          this.userService.loginUser(this.username)
+        },
+        error: (e) => { if(e) this.msg = e.error },
+        complete: () => this.router.navigate(['/products']) 
+      })
     }
   }
 
