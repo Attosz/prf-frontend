@@ -2,17 +2,9 @@
 <h1>PRF-Beadando</h1>
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" id="navId">
-  <li class="nav-item">
-    <a class="nav-link">Login</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">Prodcuts</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">Orders</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link">User Info</a>
+  <li class="nav-item" *ngFor="let navPage of navPages | keyvalue">
+    <a [routerLink]="['/'+navPage.key]" class="nav-link">{{navPage.value}}</a>
   </li>
 </ul>
 
+<router-outlet></router-outlet>

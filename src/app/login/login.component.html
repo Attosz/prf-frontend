@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>Login</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="username" placeholder="Username">
+            <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password">
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div>
+        <button (click)="login()">LOGIN</button>
+    </div>
+</div>

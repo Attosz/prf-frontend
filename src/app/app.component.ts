@@ -9,6 +9,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'prf-frontend';
   
+  readonly navPages = new Map<string, string> ([
+    ["login", "Login"],
+    ["products", "Products"],
+    ["orders", "Orders"],
+    ["users", "User Info"],
+  ])
+
   constructor(
     private modalService: NgbModal
   ) {}
