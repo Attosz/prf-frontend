@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>Product</h2>
+        <div *ngIf="product!=undefined">
+            <button *ngIf="isAdmin()" (click)="toggleAdd()">Toggle view</button>
+            <div *ngIf="toggle" class="form-group">
+                <div>Name: {{product.getName()}}</div>
+                <label for="Price">Price</label>         
+                <input type="number" id="Price" class="form-control" 
+                    [(ngModel)]="price" value={{product.getPrice()}}>
+                <label for="Itemcount">Itemcount</label>  
+                <input type="number" class="form-control" 
+                    [(ngModel)]="itemcount" id="Itemcount" value={{product.getItemCount()}}>
+                <div>ID: {{product.getId()}}</div>
+                <div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div>
+                <button (click)="submitUpdate()">Update Product</button>
+                <button (click)="submitDelete()">Delete Product</button>
+            </div>
+
+            <ul *ngIf="!toggle" class="list-unstyled">
+                <li>Name: {{product.getName()}}</li>
+                <li>Price: {{product.getPrice()}}</li>
+                <li>ItemCount: {{product.getItemCount()}}</li>
+                <li>ID: {{product.getId()}}</li>
+            </ul>
+        </div>    
+        <a [routerLink]="['/products']">Back to Products</a>
+    </div>
+</div>

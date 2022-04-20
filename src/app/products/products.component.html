@@ -1,1 +1,20 @@
-<p>products works!</p>
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>Products</h2>
+        
+        <button *ngIf="isAdmin()" (click)="toggleAdd()">Toggle view</button>
+        <div *ngIf="toggle" class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="productName" placeholder="Product name">
+            <input type="number" class="form-control" [(ngModel)]="price" placeholder="Price">
+            <input type="number" class="form-control" [(ngModel)]="itemcount" placeholder="Item Count">
+            <div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div>
+            <button (click)="submitAdd()">Add Product</button>
+        </div>
+        
+        <ul *ngIf="!toggle" class="list-unstyled">
+            <li *ngFor="let product of productList">
+                <a [routerLink]="['/products/'+product.getName()]">{{product.getName()}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

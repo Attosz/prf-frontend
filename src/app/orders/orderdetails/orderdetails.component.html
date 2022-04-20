@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>Order</h2>
+        <div *ngIf="order!=undefined">
+            <button *ngIf="isAdmin()" (click)="toggleAdd()">Toggle view</button>
+            <div *ngIf="toggle" class="form-group">
+            
+            </div>
+
+            <ul *ngIf="!toggle" class="list-unstyled">
+                <li>ID: {{order.getId()}}</li>
+                <li>Product: {{order.getProductName()}}</li>
+                <li>Username: {{order.getUserName()}}</li>
+                <li>ItemCount: {{order.getItemCount()}}</li>
+                <li>Status: {{order.getStatus()}}</li>
+                <li>iscompleated: {{order.isCompleated()}}</li>
+            </ul>
+        </div>    
+        <a [routerLink]="['/orders']">Back to Orders</a>
+    </div>
+</div>

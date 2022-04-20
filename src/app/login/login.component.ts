@@ -27,17 +27,34 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void { }
 
-  login() {
-    console.log(this.username + " " + this.password)
+  isUserLoggedIn(): boolean {
+    return this.userService.isUserLoggedIn();
+  }
 
+  login(): void {
     if (this.username && this.password) {
       this.connectionService.postLogin(this.username, this.password).subscribe({
         next: (v) => {
-          this.userService.loginUser(this.username)
+          this.userService.loginUser();
         },
         error: (e) => { if(e) this.msg = e.error },
         complete: () => this.router.navigate(['/products']) 
       })
+    }
+  }
+
+  logout(): void {
+    if (this.isUserLoggedIn()) {
+      this.connectionService.postLogout().subscribe({
+        next: (v) => {
+          this.userService.logOutUser()
+          console.log("LoggedOut")
+        },
+        error: (e) => { if(e) this.msg = e.error },
+        complete: () => {}
+      })
+    } else {
+      this.msg = "User not logged in"
     }
   }
 

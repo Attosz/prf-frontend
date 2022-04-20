@@ -1,1 +1,12 @@
-<p>orders works!</p>
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>Orders</h2>
+        <ul class="list-unstyled">
+            <li *ngFor="let order of orderList" class="d-flex flex-nowrap">
+                <div class="order-1 p-2">{{order.getProductName()}}</div>
+                <div class="order-2 p-2">Amount: {{order.getItemCount()}}</div>
+                <a class="order-2 p-2" [routerLink]="['/orders/'+order.getId()]">{{order.getId()}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
