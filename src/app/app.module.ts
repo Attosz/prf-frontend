@@ -14,6 +14,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { UsersComponent } from './users/users.component';
 import { ProductdetailComponent } from './products/productdetail/productdetail.component';
 import { OrderdetailsComponent } from './orders/orderdetails/orderdetails.component';
+import { UserdetailsComponent } from './users/userdetails/userdetails.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { OrderdetailsComponent } from './orders/orderdetails/orderdetails.compon
     OrdersComponent,
     UsersComponent,
     ProductdetailComponent,
-    OrderdetailsComponent
+    OrderdetailsComponent,
+    UserdetailsComponent
   ],
   imports: [
     BrowserModule,

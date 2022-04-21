@@ -22,7 +22,20 @@
                 <li>Price: {{product.getPrice()}}</li>
                 <li>ItemCount: {{product.getItemCount()}}</li>
                 <li>ID: {{product.getId()}}</li>
+                <li>
+                    <button (click)="toggleOrderView()">Make Order</button>
+                </li>
+                <li>
+                    <div *ngIf="orderViewToggle" class="form-group">
+                        <label for="OrderItemcount">Itemcount</label>  
+                        <input type="number" class="form-control" 
+                            [(ngModel)]="itemcount" id="OrderItemcount" value={{product.getItemCount()}}>
+                        <div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div>
+                        <button (click)="submitOrder()">Submit Order</button>
+                    </div>
+                </li>
             </ul>
+
         </div>    
         <a [routerLink]="['/products']">Back to Products</a>
     </div>

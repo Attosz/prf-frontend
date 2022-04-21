@@ -13,7 +13,7 @@ export class AppComponent {
     ["login", "Login"],
     ["products", "Products"],
     ["orders", "Orders"],
-    ["users", "User Info"],
+    ["user", "User Info"],
   ])
 
   constructor(

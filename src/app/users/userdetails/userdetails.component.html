@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+    <div class="flex-column align-items-center">
+        <h2>User</h2>
+        <div *ngIf="user!=undefined">
+            <button (click)="toggleAdd()">Toggle view</button>
+            <ul *ngIf="toggle" class="list-unstyled">
+                <li>ID: {{user.getId()}}</li>
+                <li>Username: {{user.getUserName()}}</li>
+                <li>Email: {{user.getEmail()}}</li>
+                <li><label for="Wallet">Wallet</label>         
+                <input type="text" id="Wallet" class="form-control" 
+                    [(ngModel)]="wallet" value={{user.getWallet()}}>
+                </li>
+                <li>AccessLevel: {{user.getAccessLevel()}}</li>
+                <li><div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div></li>
+                <li><button (click)="submitUpdate()">Update Wallet</button></li>
+                <li><button (click)="submitDelete()" *ngIf="isAdmin()">Delete User</button></li>
+            </ul>
+
+            <ul *ngIf="!toggle" class="list-unstyled">
+                <li>ID: {{user.getId()}}</li>
+                <li>Username: {{user.getUserName()}}</li>
+                <li>Email: {{user.getEmail()}}</li>
+                <li>Wallet: {{user.getWallet()}}</li>
+                <li>AccessLevel: {{user.getAccessLevel()}}</li>
+            </ul>
+
+            <div *ngIf="isAdmin()">
+                <button (click)="toggleAllUser()">View All Users</button>
+                <ul *ngIf="!allUserToggle" class="list-unstyled">
+                    <li *ngFor="let user of userList">
+                        <a [routerLink]="['/user/'+user.getUserName()]">{{user.getUserName()}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>    
+    </div>
+</div>

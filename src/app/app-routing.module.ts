@@ -7,6 +7,7 @@ import { OrderdetailsComponent } from './orders/orderdetails/orderdetails.compon
 import { OrdersComponent } from './orders/orders.component';
 import { ProductdetailComponent } from './products/productdetail/productdetail.component';
 import { ProductsComponent } from './products/products.component';
+import { UserdetailsComponent } from './users/userdetails/userdetails.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -21,8 +22,8 @@ const routes: Routes = [
   { path: 'orders', canActivate: [UserGuard], component: OrdersComponent },
 
   // USERS
-  { path: 'users/:id', canActivate: [UserGuard], component: UsersComponent },
-  { path: 'users', canActivate: [UserGuard], component: UsersComponent },
+  { path: 'user/:id', canActivate: [UserGuard], component: UserdetailsComponent },
+  { path: 'user', canActivate: [UserGuard], component: UserdetailsComponent },
   
   // Other
   { path: '', redirectTo: 'orders', pathMatch: 'full' },

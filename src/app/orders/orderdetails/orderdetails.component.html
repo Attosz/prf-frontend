@@ -3,9 +3,22 @@
         <h2>Order</h2>
         <div *ngIf="order!=undefined">
             <button *ngIf="isAdmin()" (click)="toggleAdd()">Toggle view</button>
-            <div *ngIf="toggle" class="form-group">
-            
-            </div>
+            <ul *ngIf="toggle" class="list-unstyled">
+                <li>ID: {{order.getId()}}</li>
+                <li>Product: {{order.getProductName()}}</li>
+                <li>Username: {{order.getUserName()}}</li>
+                <li>ItemCount: {{order.getItemCount()}}</li>
+                <li><label for="Status">Status</label>         
+                <input type="text" id="Status" class="form-control" 
+                    [(ngModel)]="status" value={{order.getStatus()}}>
+                </li>
+                <li>iscompleated: {{order.isCompleated()}}</li>
+                <li>Created: {{created_at}}</li>
+                <li>Updated: {{updated_at}}</li>
+                <li><div class="alert alert-danger" role="alert" *ngIf="msg !== ''">{{ msg }}</div></li>
+                <li><button (click)="submitUpdate()">Update Product</button></li>
+                <li><button (click)="submitDelete()">Delete Product</button></li>
+            </ul>
 
             <ul *ngIf="!toggle" class="list-unstyled">
                 <li>ID: {{order.getId()}}</li>
@@ -14,6 +27,8 @@
                 <li>ItemCount: {{order.getItemCount()}}</li>
                 <li>Status: {{order.getStatus()}}</li>
                 <li>iscompleated: {{order.isCompleated()}}</li>
+                <li>Created: {{created_at}}</li>
+                <li>Updated: {{updated_at}}</li>
             </ul>
         </div>    
         <a [routerLink]="['/orders']">Back to Orders</a>

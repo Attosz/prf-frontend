@@ -11,10 +11,6 @@ import { ConnectionService } from 'app/utils/connection.service';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
-  password: string;
-  msg: string;
-
   constructor(
       private router: Router,
       private userService: UserService,
@@ -23,12 +19,28 @@ export class LoginComponent implements OnInit {
     this.username = '';
     this.password = '';
     this.msg = '';
+    this.email = '';
+    this.toggle = false;
   }
   
   ngOnInit(): void { }
 
   isUserLoggedIn(): boolean {
     return this.userService.isUserLoggedIn();
+  }
+
+  toggleView(): void {
+    this.toggle = !this.toggle;
+  }
+
+  registerUser() {
+    this.connectionService.postUser(this.username, this.password, this. email).subscribe({
+      next: (v) => {
+        this.userService.loginUser();
+      },
+      error: (e) => { if(e) this.msg = e.error },
+      complete: () => this.toggleView()
+    })
   }
 
   login(): void {
@@ -57,5 +69,11 @@ export class LoginComponent implements OnInit {
       this.msg = "User not logged in"
     }
   }
+
+  username: string;
+  password: string;
+  msg: string;
+  email: string;
+  toggle: boolean;
 
 }

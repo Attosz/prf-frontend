@@ -59,7 +59,33 @@ export class ConnectionService {
   //USERS
 
   getOwnUser() {
-    return this.http.get(this.backendRoot+'/users/', { withCredentials: true });
+    return this.http.get(this.backendRoot+'/users', { withCredentials: true });
+  }
+
+  getUser(username: string) {
+    return this.http.get(this.backendRoot+'/users/'+username, { withCredentials: true });
+  }
+
+  getUsers() {
+    return this.http.get(this.backendRoot+'/allusers', { withCredentials: true });
+  }
+
+  postUser(username: string, password: string ,email: string) {
+    const userInfo = {
+      password: password, email: email
+    }
+    return this.http.post(this.backendRoot+'/users/'+username, userInfo, { withCredentials: true });
+  }
+
+  putWalletUser(username: string, wallet: number) {
+    const userInfo = {
+      wallet: wallet
+    }
+    return this.http.put(this.backendRoot+'/users/'+username, userInfo, { withCredentials: true });
+  }
+
+  deleteUser(username: string) {   
+    return this.http.delete(this.backendRoot+'/users/'+username, { withCredentials: true });
   }
 
   //ORDERS
@@ -86,7 +112,7 @@ export class ConnectionService {
     return this.http.put(this.backendRoot+'/orders/'+id, orderInfo, { withCredentials: true });
   }
 
-  deleteOrder(id: string) {
+  deleteOrder(id: string) {   
     return this.http.delete(this.backendRoot+'/orders/'+id, { withCredentials: true });
   }
 }
