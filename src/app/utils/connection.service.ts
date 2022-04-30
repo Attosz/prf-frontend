@@ -9,7 +9,7 @@ import { catchError, retry } from 'rxjs/operators';
 })
 export class ConnectionService {
 
-  private backendRoot = "http://localhost:3000"
+  private backendRoot = environment.backend;
 
   constructor(
     private http: HttpClient
